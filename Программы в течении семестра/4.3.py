@@ -1,0 +1,6 @@
+gorod1 = input()
+gorod2 = input()
+gorod3 = input()
+max_dlin = max(gorod1, gorod2, gorod3, key= len)
+min_dlin = min(gorod1, gorod2, gorod3, key= len)
+print(min_dlin, max_dlin)

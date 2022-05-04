@@ -1,0 +1,5 @@
+chisl1 = float(input())
+chisl2 = float(input())
+chisl3 = float(input())
+sr = chisl1 + chisl2 + chisl3 - min(chisl1, chisl3, chisl2) - max(chisl3, chisl2, chisl1)
+print(max(chisl3, chisl2, chisl1),sr, min(chisl1, chisl3, chisl2), sep='\n')
