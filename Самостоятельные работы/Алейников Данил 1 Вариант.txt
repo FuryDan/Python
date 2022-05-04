@@ -1,0 +1,27 @@
+Алейников Данил Вариант 1
+Задача 1
+year = int(input())
+if year % 100 == 0 :
+    print('YES')
+else:
+    print('NO') 
+
+Задача 2
+age = int(input())
+pol = input()
+if age >= 10 and age <=15 and 'f' in pol :
+    print('YES')
+else:
+    print('NO')
+
+Задача 3
+nom_stolb1 = int(input())
+str_stolb1 = int(input())
+nom_stolb2 = int(input())
+str_stolb2 = int(input())
+if nom_stolb1 >= 1 and str_stolb1 >= 1 and nom_stolb2 >= 1 and str_stolb2 >= 1 and nom_stolb1 <=8 and str_stolb1 <=8 and nom_stolb2 <=8 and str_stolb2 <=8:
+    sum = nom_stolb1 + str_stolb1 + nom_stolb2 + str_stolb2
+if sum % 2 == 0:
+    print('YES')
+else:
+    print('NO')
