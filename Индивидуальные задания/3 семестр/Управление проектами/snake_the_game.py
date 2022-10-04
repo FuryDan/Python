@@ -28,7 +28,7 @@ font=("Agency FB", 40, "bold"))
 # Draw a game field border
 border = turtle.Turtle()
 border.hideturtle()
-border.penup()
+border.penup() 
 for k in range(309, 311):
     border.goto(-k, k)
     border.pendown()
