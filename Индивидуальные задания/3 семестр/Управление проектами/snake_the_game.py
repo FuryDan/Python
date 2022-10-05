@@ -21,9 +21,25 @@ pen.shape("circle")
 pen.color("white")
 pen.penup()
 pen.hideturtle()
-pen.goto(0, 0)
+pen.goto(0, 30)
 pen.write("Loading, please wait...", align="center",
 font=("Agency FB", 40, "bold"))
+pen.speed(0)
+pen.shape("circle")
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 0)
+pen.write("You can move, using 'wasd'.", align="center",
+font=("Agency FB", 10, "bold"))
+pen.speed(0)
+pen.shape("circle")
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, -15)
+pen.write("Beware of the borders!", align="center",
+font=("Agency FB", 10, "bold"))
 
 # Draw a game field border
 border = turtle.Turtle()
@@ -145,6 +161,7 @@ while True:
             segments.append(new_segment)
             delay -= 0.001
             score += 10
+
         # Adding partially invisible segment 
         elif score >= 20:
             new_segment = turtle.Turtle()
@@ -160,6 +177,7 @@ while True:
         pen.clear()
         pen.write("Score : {} High Score : {} ".format(
             score, high_score), align="center", font=("Times New Roman", 24, "bold", "italic"))
+    
     # Checking for head collisions with body segments
     for index in range(len(segments)-1, 0, -1):
         x = segments[index-1].xcor()
