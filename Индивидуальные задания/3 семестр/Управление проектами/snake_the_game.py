@@ -123,7 +123,7 @@ wind.onkeypress(go_left, "a")
 wind.onkeypress(go_right, "d")
 segments = []
 
-# Main Gameplay
+# Main Gameplay 
 while True:
     wind.update()
     if head.xcor() > 290 or head.xcor() < -290 or head.ycor() > 290 or head.ycor() < -290:
