@@ -1,0 +1,37 @@
+Задача 1
+
+def steps(n):
+    a, b, c = 0, 1, 1
+    if n < 2:
+        return [a, b, c][n]
+    while n:
+        a, b, c = b, c, a+b+c
+        n -= 1
+    return b
+
+n = int(input("Кол-во ступенек лесенки: "))
+print(f'Кол-во способов спуститься: {steps(n)}')
+
+Задача 2
+
+n = int(input("Кол-во контейнеров для отходов: "))
+safe = list(range(n)) 
+safe[0] = 2 
+safe[1] = 3 
+for i in range(2, n): 
+   safe[i] = safe[i-1] + safe[i-2]
+print(f'Кол-во безопасных стопок: {safe[-1]}')
+
+Задача 3
+
+n = int(input("Кол-во строк треугольника Паскаля: "))
+start = ["1"]
+print(f'Ваш трегольник Паскаля, содержащий {n} строк:')
+print(start[0])
+for i in range(n - 1):
+    start_1 = start.copy()
+    start.clear()
+    start = [str(int(start_1[j]) + int(start_1[j + 1])) for j in range(len(start_1) - 1)]
+    start.insert(0, '1')
+    start.append('1')
+    print('\t'.join(start))
