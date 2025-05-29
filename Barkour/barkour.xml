@@ -1,0 +1,112 @@
+<mujoco>
+  <option integrator="RK4" timestep="0.002"/>
+  
+  <compiler angle="radian" meshdir="../assets" balanceinertia="true"/>
+  
+  <worldbody>
+    <!-- Освещение и камера -->
+    <light name="top" pos="0 0 4" dir="0 0 -1"/>
+    <camera name="side" pos="0 -3 1.5" xyaxes="1 0 0 0 1 1.5"/>
+
+    <!-- Стартовая платформа -->
+    <body name="start_platform" pos="-2 0 0">
+      <geom type="box" size="0.6 0.6 0.2" rgba="0.4 0.3 0.2 1"/>
+    </body>
+
+    <!-- Основное тело робота -->
+    <body name="base" pos="-2 0 0.3" euler="0 0 0">
+      <freejoint name="free_joint"/>
+      <geom name="torso" type="box" size="0.35 0.18 0.12" mass="8" rgba="0.3 0.7 0.9 1"/>
+      
+      <!-- Передняя правая нога -->
+      <body name="fr_hip" pos="0.25 0.12 -0.05">
+        <joint name="fr_hip_joint" type="hinge" axis="0 0 1" range="-1.57 1.57"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1" size="0.04"/>
+        <body name="fr_thigh">
+          <joint name="fr_knee_joint" type="hinge" axis="1 0 0" range="-2.0 2.0"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.25" size="0.035"/>
+        </body>
+      </body>
+
+      <!-- Передняя левая нога -->
+      <body name="fl_hip" pos="0.25 -0.12 -0.05">
+        <joint name="fl_hip_joint" type="hinge" axis="0 0 1" range="-1.57 1.57"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1" size="0.04"/>
+        <body name="fl_thigh">
+          <joint name="fl_knee_joint" type="hinge" axis="1 0 0" range="-2.0 2.0"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.25" size="0.035"/>
+        </body>
+      </body>
+
+      <!-- Задняя правая нога -->
+      <body name="rr_hip" pos="-0.25 0.12 -0.05">
+        <joint name="rr_hip_joint" type="hinge" axis="0 0 1" range="-1.57 1.57"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1" size="0.04"/>
+        <body name="rr_thigh">
+          <joint name="rr_knee_joint" type="hinge" axis="1 0 0" range="-2.0 2.0"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.25" size="0.035"/>
+        </body>
+      </body>
+
+      <!-- Задняя левая нога -->
+      <body name="rl_hip" pos="-0.25 -0.12 -0.05">
+        <joint name="rl_hip_joint" type="hinge" axis="0 0 1" range="-1.57 1.57"/>
+        <geom type="capsule" fromto="0 0 0 0 0 -0.1" size="0.04"/>
+        <body name="rl_thigh">
+          <joint name="rl_knee_joint" type="hinge" axis="1 0 0" range="-2.0 2.0"/>
+          <geom type="capsule" fromto="0 0 0 0 0 -0.25" size="0.035"/>
+        </body>
+      </body>
+    </body>
+
+    <!-- Препятствия -->
+    <!-- Столбы -->
+    <body name="pole1" pos="-0.5 0 0">
+      <geom type="cylinder" size="0.06 0.5" rgba="0.7 0.7 0.7 1"/>
+    </body>
+    <body name="pole2" pos="-0.5 0.6 0">
+      <geom type="cylinder" size="0.06 0.5" rgba="0.7 0.7 0.7 1"/>
+    </body>
+
+    <!-- А-образная конструкция -->
+    <body name="a_frame" pos="1.0 0 0">
+      <geom type="box" size="0.8 0.07 0.07" euler="0 0 0.785" pos="-0.5 0 0.7"/>
+      <geom type="box" size="0.8 0.07 0.07" euler="0 0 -0.785" pos="0.5 0 0.7"/>
+    </body>
+
+    <!-- Прыжок -->
+    <body name="jump_left" pos="2.2 0 0">
+      <geom type="box" size="0.15 0.6 0.1" rgba="0.6 0.6 0.6 1"/>
+    </body>
+    <body name="jump_right" pos="2.8 0 0">
+      <geom type="box" size="0.15 0.6 0.1" rgba="0.6 0.6 0.6 1"/>
+    </body>
+
+    <!-- Финишная платформа -->
+    <body name="finish" pos="3.5 0 0">
+      <geom type="box" size="0.6 0.6 0.2" rgba="0.8 0.2 0.2 1"/>
+    </body>
+  </worldbody>
+
+  <actuator>
+    <!-- Передняя правая нога -->
+    <motor joint="fr_hip_joint" gear="300" ctrlrange="-2 2"/>
+    <motor joint="fr_knee_joint" gear="400" ctrlrange="-3 3"/>
+    
+    <!-- Передняя левая нога -->
+    <motor joint="fl_hip_joint" gear="300" ctrlrange="-2 2"/>
+    <motor joint="fl_knee_joint" gear="400" ctrlrange="-3 3"/>
+    
+    <!-- Задняя правая нога -->
+    <motor joint="rr_hip_joint" gear="300" ctrlrange="-2 2"/>
+    <motor joint="rr_knee_joint" gear="400" ctrlrange="-3 3"/>
+    
+    <!-- Задняя левая нога -->
+    <motor joint="rl_hip_joint" gear="300" ctrlrange="-2 2"/>
+    <motor joint="rl_knee_joint" gear="400" ctrlrange="-3 3"/>
+  </actuator>
+
+  <sensor>
+    <framepos objtype="body" objname="base"/>
+  </sensor>
+</mujoco>
